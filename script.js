@@ -20,18 +20,16 @@ function generateCanvases() {
 
     console.log(`Generating canvas: canvas${i}`);
     generateThree(`canvas${i}`);
-    console.log("Canvas generated!");
   }
 }
 
 function generateThree(canvasId) {
   const canvas = document.getElementById(canvasId);
-  console.log(canvas);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
   camera.position.z = 5;
   const renderer = new THREE.WebGLRenderer({canvas: canvas});
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight); // Fixed size setting
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   const geometry = new THREE.BoxGeometry();
   const material = new THREE.MeshBasicMaterial({ color: 0x00ff00});
   const cube = new THREE.Mesh(geometry, material);
