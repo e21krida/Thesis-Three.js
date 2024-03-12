@@ -10,7 +10,7 @@ function generateCanvases() {
     const canvas = document.createElement('canvas');
     canvas.id = `canvas${i}`;
     canvas.width = 800;
-    canvas.height = 600;
+    canvas.height = 370;
     canvasWrapper.appendChild(canvas);
     const text = document.createElement('div');
     text.classList.add('canvas-text');
@@ -26,10 +26,6 @@ function generateCanvases() {
 
 function generateThree(canvasId) {
   const canvas = document.getElementById(canvasId);
-  if (!canvas) {
-    console.error(`Canvas element not found: ${canvasId}`);
-    return;
-  }
   console.log(canvas);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
