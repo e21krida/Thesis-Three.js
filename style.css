@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto;
+  height: 100vh;
+}
+
+#content {
+  padding: 20px;
+}
+
+.canvas-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.canvas-container canvas {
+  border: 1px #000000 solid;
+  width: 100%;
+  height: auto;
+}
+
+.canvas-text {
+  font-size: 8px;
+}
+
+#menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.menu-buttons {
+  text-align: center;
+}
+
+.menu-buttons button {
+  background-color: #FFFFFF;
+  color: #000000;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 10px;
+  font-size: 10px;
+  transition: background-color 0.5s;
+}
+
+.menu-buttons button:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+}
