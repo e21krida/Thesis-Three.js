@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 const times = [];
 let fps;
+const canvasContainer = document.querySelector('.canvas-container');
 
 function refreshLoop() {
     window.requestAnimationFrame(() => {
@@ -21,11 +22,7 @@ function getFPS() {
     return fps || 0;
 }
 
-console.log("Script loaded");
-
 function generateCanvases() {
-    const canvasContainer = document.querySelector('.canvas-container');
-
     for (let i = 1; i <= 12; i++) {
         const canvasWrapper = document.createElement('div');
         canvasWrapper.classList.add('canvas-wrapper');
