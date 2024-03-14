@@ -44,14 +44,17 @@ function generateCanvases() {
 function generateThree(canvasId, canvasNumber) {
     const canvas = document.getElementById(canvasId);
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xbccbe3);
     const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
     camera.position.z = 5;
     const renderer = new THREE.WebGLRenderer({ canvas: canvas });
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
     const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const material = new THREE.MeshBasicMaterial({ color: 0xfc7526 });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
+    const light = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+    scene.add(light);
 
     function animate() {
         requestAnimationFrame(animate);
