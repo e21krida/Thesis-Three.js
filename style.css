@@ -24,6 +24,10 @@ body {
   height: auto;
 }
 
+.stats-container > div {
+  position: relative !important;
+}
+
 .canvas-text {
   font-size: 12px;
 }
