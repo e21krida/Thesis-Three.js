@@ -1,31 +1,36 @@
 import * as THREE from 'three';
 const canvasContainer = document.querySelector('.canvas-container');
 
-function generateCanvases() {
-    for (let i = 1; i <= 12; i++) {
-        const canvasWrapper = document.createElement('div');
-        canvasWrapper.classList.add('canvas-wrapper');
-        const canvas = document.createElement('canvas');
-        canvas.id = `canvas${i}`;
-        canvas.width = 800;
-        canvas.height = 370;
-        canvasWrapper.appendChild(canvas);
-        const text = document.createElement('div');
-        text.classList.add('canvas-text');
-        text.textContent = `Canvas ${i}`;
-        canvasWrapper.appendChild(text);
-
-        canvas.addEventListener('click', function() {
-            window.location.href=`product.html?canvas=${i}`;
-        })
-
-        canvasContainer.appendChild(canvasWrapper);
-        console.log(`Generating canvas: canvas${i}`);
-        generateThree(`canvas${i}`, i);
-    }
+function getURLParam(parameter) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(parameter);
 }
 
-function generateThree(canvasId, canvasNumber) {
+document.addEventListener('DOMContentLoaded', function () {
+  const canvasNumber = getURLParam('canvas');
+  if (canvasNumber) {
+    generateCanvas(canvasNumber);
+  }
+})
+function generateCanvas(canvasNumber) {
+  const canvasWrapper = document.createElement('div');
+  canvasWrapper.classList.add('canvas-wrapper');
+  const canvas = document.createElement('canvas');
+  canvas.id = `canvas${canvasNumber}`;
+  canvas.width = 800;
+  canvas.height = 370;
+  canvasWrapper.appendChild(canvas);
+  const text = document.createElement('div');
+  text.classList.add('canvas-text');
+  text.textContent = `Canvas ${canvasNumber}`;
+  canvasWrapper.appendChild(text);
+  canvasContainer.appendChild(canvasWrapper);
+  console.log(`Generating canvas: canvas${canvasNumber}`);
+  generateThree(canvasNumber);
+}
+
+function generateThree(canvasNumber) {
+    const canvasId = `canvas${canvasNumber}`;
     const canvas = document.getElementById(canvasId);
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xbccbe3);
@@ -53,7 +58,3 @@ function generateThree(canvasId, canvasNumber) {
 
     animate();
 }
-
-window.onload = function () {
-    generateCanvases();
-};
