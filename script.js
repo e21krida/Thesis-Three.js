@@ -7,8 +7,8 @@ function generateCanvases() {
         canvasWrapper.classList.add('canvas-wrapper');
         const canvas = document.createElement('canvas');
         canvas.id = `canvas${i}`;
-        canvas.width = 800;
-        canvas.height = 370;
+        canvas.width = 700;
+        canvas.height = 300;
         canvasWrapper.appendChild(canvas);
         const text = document.createElement('div');
         text.classList.add('canvas-text');
