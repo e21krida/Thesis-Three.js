@@ -28,7 +28,7 @@ function generateCanvases() {
 function generateThree(canvasId, canvasNumber) {
     const canvas = document.getElementById(canvasId);
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xbccbe3);
+    scene.background = new THREE.Color(0xFFFFFF);
     const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
     camera.position.z = 5;
     const renderer = new THREE.WebGLRenderer({ canvas: canvas });
