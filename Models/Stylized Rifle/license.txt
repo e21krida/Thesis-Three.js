@@ -1,0 +1,8 @@
+Model Information:
+* title:	Stylized Rifle
+* source:	https://sketchfab.com/3d-models/stylized-rifle-c1dc5aca43f445c38807628e4c14ea89
+* author:	stokicdizajn (https://sketchfab.com/stokicdizajn)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

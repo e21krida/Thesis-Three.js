@@ -1,4 +1,9 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+const scenes = {};
+const renderers = {};
+const models = {};
 const canvasContainer = document.querySelector('.canvas-container');
 
 function generateCanvases() {
@@ -21,37 +26,50 @@ function generateCanvases() {
 
         canvasContainer.appendChild(canvasWrapper);
         console.log(`Generating canvas: canvas${i}`);
-        generateThree(`canvas${i}`, i);
+        generateThree(`canvas${i}`);
     }
 }
 
-function generateThree(canvasId, canvasNumber) {
+function generateThree(canvasId) {
     const canvas = document.getElementById(canvasId);
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xFFFFFF);
+    scene.background = new THREE.Color(0xCCCCCC);
+    scenes[canvasId] = scene;
+
     const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
     camera.position.z = 5;
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0xfc7526 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    renderers[canvasId] = renderer;
+
+    const loader = new GLTFLoader();
+    loader.load('models/Stylized Rifle/scene.gltf', function (gltf) {
+        models[canvasId] = gltf.scene;
+        gltf.scene.position.set(0, -1, 0);
+        gltf.scene.scale.set(3, 3, 3);
+        scene.add(gltf.scene);
+    }, undefined, function (error) {
+        console.error(error);
+    });
+
     const light = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
     scene.add(light);
 
-    function animate() {
-        requestAnimationFrame(animate);
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        renderer.render(scene, camera);
-        if(window.fpsTrackerActive) {
-            const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
-            window.dispatchEvent(fpsEvent);
-        }
-    }
+    animate(canvasId, renderer, scene, camera);
+}
 
-    animate();
+function animate(canvasId, renderer, scene, camera) {
+    requestAnimationFrame(() => animate(canvasId, renderer, scene, camera));
+    const model = models[canvasId];
+    if (model) {
+        model.rotation.y += 0.005;
+    }
+    renderer.render(scene, camera);
+    if (window.fpsTrackerActive) {
+        const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
+        window.dispatchEvent(fpsEvent);
+    }
 }
 
 window.onload = function () {
