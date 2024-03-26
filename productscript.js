@@ -22,7 +22,6 @@ function generateCanvas(modelName) {
     .then(response => response.json())
     .then(modelData => {
       const rightModel = modelData.find(row => row.name === modelName);
-
       const canvasWrapper = document.createElement('div');
       canvasWrapper.classList.add('product-canvas-wrapper');
       const canvas = document.createElement('canvas');
@@ -36,13 +35,41 @@ function generateCanvas(modelName) {
       text.classList.add('product-canvas-text');
       text.textContent = modelName;
 
-      const description = document.createElement("p");
-      description.classList.add("description");
-      description.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a nibh condimentum, suscipit nunc quis, pharetra neque. Aliquam convallis sed magna at auctor. Vivamus tincidunt luctus dui, at imperdiet purus tincidunt vitae. Phasellus euismod lacus vel quam bibendum, in ultrices velit eleifend. Curabitur eget suscipit eros, et finibus augue. Fusce orci urna, feugiat dictum mollis non, pellentesque id lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur rutrum mi at tempor consectetur. Sed sit amet urna vel metus egestas bibendum sed a leo. Pellentesque luctus nisl eu tincidunt vulputate. Fusce facilisis non ligula eu vehicula. Sed fringilla odio id malesuada porttitor. Vestibulum finibus aliquet lectus, et dapibus lacus elementum nec. Nulla lobortis, lectus ut hendrerit pretium.";
+      const description = document.createElement('p');
+      description.classList.add('description');
+      description.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a nibh condimentum, suscipit nunc quis, pharetra neque. Aliquam convallis sed magna at auctor. Vivamus tincidunt luctus dui, at imperdiet purus tincidunt vitae. Phasellus euismod lacus vel quam bibendum, in ultrices velit eleifend. Curabitur eget suscipit eros, et finibus augue. Fusce orci urna, feugiat dictum mollis non, pellentesque id lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur rutrum mi at tempor consectetur. Sed sit amet urna vel metus egestas bibendum sed a leo. Pellentesque luctus nisl eu tincidunt vulputate. Fusce facilisis non ligula eu vehicula. Sed fringilla odio id malesuada porttitor. Vestibulum finibus aliquet lectus, et dapibus lacus elementum nec. Nulla lobortis, lectus ut hendrerit pretium.';
       text.appendChild(description);
       canvasWrapper.appendChild(text);
-
       canvasContainer.appendChild(canvasWrapper);
+
+      // Establishes the reference
+      let referenceText = document.createElement('span');
+      referenceText.classList.add('product-reference-text');
+      canvasWrapper.appendChild(referenceText);
+
+      // References the source of the model.
+      let sourceA = document.createElement('a');
+      sourceA.textContent = rightModel.references[0].text;
+      sourceA.href = rightModel.references[0].href;
+      referenceText.appendChild(sourceA);
+
+      let text1 = document.createTextNode(' by ');
+      referenceText.appendChild(text1);
+
+      // References the creator of the model.
+      let sourceB = document.createElement('a');
+      sourceB.textContent = rightModel.references[1].text;
+      sourceB.href = rightModel.references[1].href;
+      referenceText.appendChild(sourceB);
+
+      let text2 = document.createTextNode(' is licensed under ');
+      referenceText.appendChild(text2);
+
+      // References CC BY 4.0
+      let sourceC = document.createElement('a');
+      sourceC.textContent = 'CC BY 4.0'
+      sourceC.href = 'https://creativecommons.org/licenses/by/4.0/';
+      referenceText.appendChild(sourceC);
 
       initializeThree();
       initializeModel(rightModel.path);
@@ -62,7 +89,8 @@ function initializeThree() {
   renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-  const light = new THREE.HemisphereLight(0xffffff, 0x000000, 1);
+  const light = new THREE.PointLight( 0xffffff, 1, 100 );
+  light.position.set(0, 0.5, 1);
   scene.add(light);
 }
 
@@ -106,4 +134,8 @@ function animate() {
     model.rotation.y += 0.005;
   }
   renderer.render(scene, camera);
+  if (window.fpsTrackerActive) {
+    const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
+    window.dispatchEvent(fpsEvent);
+  }
 }

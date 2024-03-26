@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Doodles",
     "path": "models/doodles.glb",
-    "reference": [
+    "references": [
       {
         "text": "Doodles",
         "href": "https://sketchfab.com/3d-models/rtfktchallenge-doodles-rtfkt-rtfkt-bb7da6cc59894a95b8c302937711e174"
@@ -22,7 +22,7 @@
     "id": 2,
     "name": "Cyberpunk",
     "path": "models/cyberpunk.glb",
-    "reference": [
+    "references": [
       {
         "text": "Cyberpunk",
         "href": "https://sketchfab.com/3d-models/rtfkt-cyberpunk-6bbac4a45fa34433914868b4ad103124"
@@ -41,7 +41,7 @@
     "id": 3,
     "name": "Nostalgia",
     "path": "models/nostalgia.glb",
-    "reference": [
+    "references": [
       {
         "text": "Nostalgia",
         "href": "https://sketchfab.com/3d-models/updated-90s-nostalgia-rtfktchallenge-rtfkt-e756980d5067488d9b0284ecf6d6797c"

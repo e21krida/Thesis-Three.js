@@ -3,7 +3,7 @@
   text-transform: uppercase;
 }
 
-h1, h2, text {
+h1, h2, text, span, a {
   color: white;
 }
 
@@ -50,6 +50,14 @@ body {
 
 .product-canvas-wrapper {
   grid-template-columns: 800px 300px;
+  grid-template-rows: 1fr 100px;
+}
+
+.product-reference-text {
+  grid-row: 2;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
 }
 
 .canvas-text, .product-canvas-text {
