@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const models = {};
 const renderers = {};
+let amountofModels = 0;
 const canvasContainer = document.querySelector('.canvas-container');
 
 window.onload = function () {
@@ -66,6 +67,7 @@ function initializeThree(canvasId, modelPath) {
 function initializeModel(modelPath, scene, camera, canvasId) {
   const loader = new GLTFLoader();
   loader.load(modelPath, function (gltf) {
+    amountofModels++;
     const model = gltf.scene;
     scaleModel(model);
     adjustCamera(model, camera);
@@ -75,7 +77,8 @@ function initializeModel(modelPath, scene, camera, canvasId) {
   });
 }
 
-function scaleModel(model, targetHeight = 30) {
+function scaleModel(model) {
+  let targetHeight = 0.2
   const boundingBox = new THREE.Box3().setFromObject(model);
   const size = boundingBox.getSize(new THREE.Vector3());
   const scaleFactor = targetHeight / size.y;
@@ -88,14 +91,21 @@ function adjustCamera(model, camera) {
   const size = boundingBox.getSize(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z);
   const distance = maxDim * 1.2;
-  camera.position.set(center.x, center.y, center.z + distance);
+  camera.position.set(center.x +0.2, center.y, center.z + + distance);
   camera.lookAt(center);
 }
 
 function animate(model, renderer, camera, scene) {
   requestAnimationFrame(() => animate(model, renderer, camera, scene));
-  if (model) {
-    model.rotation.y += 0.005;
+  if (model && amountofModels == 12) {
+    model.rotation.y += 0.008;
+  }
+  if(amountofModels == 12) {
+    console.log('experimental finished loading done!');
   }
   renderer.render(scene, camera);
+  if (window.fpsTrackerActive) {
+    const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
+    window.dispatchEvent(fpsEvent);
+  }
 }
