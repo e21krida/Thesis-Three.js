@@ -27,7 +27,7 @@ function generateCanvases() {
         canvasWrapper.appendChild(text);
 
         canvas.addEventListener('click', function () {
-          window.location.href = `product.html?canvas=${i}`;
+          window.location.href = `product.html?name=${model.name}`;
         });
 
         canvasContainer.appendChild(canvasWrapper);
@@ -45,13 +45,13 @@ function normalizeCamera(model, camera) {
   boundingBox.getCenter(center);
 
   const maxDim = Math.max(size.x, size.y, size.z);
-  const distance = maxDim * 1;
+  const distance = maxDim * 1.2;
   camera.position.set(center.x, center.y, center.z + distance);
   camera.lookAt(center);
 }
 
 function normalizeModelSize(model) {
-  const targetSize = 50; 
+  const targetSize = 1; 
   const boundingBox = new THREE.Box3().setFromObject(model);
   const size = new THREE.Vector3();
   boundingBox.getSize(size);
