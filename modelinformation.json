@@ -20,16 +20,16 @@
   },
   {
     "id": 2,
-    "name": "Cyberpunk",
-    "path": "models/cyberpunk.glb",
+    "name": "Pinky Fashion",
+    "path": "models/pinky-fashion.glb",
     "references": [
       {
-        "text": "Cyberpunk",
-        "href": "https://sketchfab.com/3d-models/rtfkt-cyberpunk-6bbac4a45fa34433914868b4ad103124"
+        "text": "Pinky Fashion",
+        "href": "https://sketchfab.com/3d-models/rtfktchallenge-pinky-fashion-by-franz-vega-317ac3f788fc4706af150ae40247a3eb"
       },
       {
-        "text": "Pvietto",
-        "href": "https://sketchfab.com/pvietto"
+        "text": "Franz_vc",
+        "href": "https://sketchfab.com/franz_vc"
       },
       {
         "text": "LICENSED UNDER CC BY 4.0",
@@ -96,16 +96,16 @@
   },
   {
     "id": 6,
-    "name": "Invasion",
-    "path": "models/invasion.glb",
+    "name": "Batik",
+    "path": "models/batik.glb",
     "references": [
       {
-        "text": "Invasion",
-        "href": "https://sketchfab.com/3d-models/rtfkt-invasion-6751e10d36964d658d74030622c8ce67"
+        "text": "Batik",
+        "href": "https://sketchfab.com/3d-models/rtfktchallenge-batik-8123896c171b44349a68f7187139cfe2"
       },
       {
-        "text": "Pvietto",  
-        "href": "https://sketchfab.com/pvietto"
+        "text": "Navirobot",  
+        "href": "https://sketchfab.com/Navirobot"
       },
       {
         "text": "LICENSED UNDER CC BY 4.0",
@@ -115,16 +115,16 @@
   },
   {
     "id": 7,
-    "name": "Lowpoly",
-    "path": "models/lowpoly.glb",
+    "name": "Aliens",
+    "path": "models/aliens.glb",
     "references": [
       {
-        "text": "LowPoly",
-        "href": "https://sketchfab.com/3d-models/rtfkt-one-lowpoly-6991d74c1ce34758abd00c3d26f40620"
+        "text": "Aliens",
+        "href": "https://sketchfab.com/3d-models/aliens-ts-rtfktchallenge-one-83b5b3154b3c434986299cd88b6d8c34"
       },
       {
-        "text": "Pvietto",
-        "href": "https://sketchfab.com/pvietto"
+        "text": "Mamba_Negra",
+        "href": "https://sketchfab.com/Mamba_Negra"
       },
       {
         "text": "LICENSED UNDER CC BY 4.0",
@@ -191,16 +191,16 @@
   },
   {
     "id": 11,
-    "name": "Space Skull",
-    "path": "models/space-skull.glb",
+    "name": "Golden",
+    "path": "models/golden.glb",
     "references": [
       {
-        "text": "Space Skull",
-        "href": "https://sketchfab.com/3d-models/rtfkt-space-skull-9eecd7c77e0c445e88ef9822887284ea"
+        "text": "Golden",
+        "href": "https://sketchfab.com/3d-models/rtfktchallenge-golden-by-franz-vega-0662622496ba4c4f95e5edac088cc272"
       },
       {
-        "text": "Pvietto",
-        "href": "https://sketchfab.com/pvietto"
+        "text": "Franz_vc",
+        "href": "https://sketchfab.com/franz_vc"
       },
       {
         "text": "LICENSED UNDER CC BY 4.0",
@@ -210,16 +210,16 @@
   },
   {
     "id": 12,
-    "name": "Heavy Metal",
-    "path": "models/heavy-metal.glb",
+    "name": "Paul Theme",
+    "path": "models/paul-theme.glb",
     "references": [
       {
-        "text": "heavy Metal",
-        "href": "https://sketchfab.com/3d-models/rtfkt-one-heavy-metal-d023021664b14066ba2091b46796d48a"
+        "text": "paul-theme",
+        "href": "https://sketchfab.com/3d-models/rtfktchallenge-paul-theme-tekken-70359e9596354126b3fa791d342276ab"
       },
       {
-        "text": "Pvietto",
-        "href": "https://sketchfab.com/pvietto"
+        "text": "Bert Gedik",
+        "href": "https://sketchfab.com/berkgedik"
       },
           {
         "text": "LICENSED UNDER CC BY 4.0",

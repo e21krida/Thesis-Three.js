@@ -30,14 +30,11 @@ function createCanvases(model, index) {
   canvas.width = 800;
   canvas.height = 370;
   canvasWrapper.appendChild(canvas);
-
   const text = document.createElement('div');
   text.classList.add('product-canvas-text');
-  text.textContent = `Canvas ${index + 1}: ${model.name}`;
+  text.textContent = model.name;
   canvasWrapper.appendChild(text);
-
   canvasContainer.appendChild(canvasWrapper);
-
   canvas.addEventListener('click', function () {
     window.location.href = `product.html?name=${model.name}`;
   });
@@ -49,18 +46,14 @@ function initializeThree(canvasId, modelPath) {
   const canvas = document.getElementById(canvasId);
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0xCCCCCC);
-
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
   camera.position.set(0, 0, 35);
-
   const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   renderers[canvasId] = renderer;
-
   const light = new THREE.PointLight( 0xffffff, 500, 100);
   light.position.set(0, 10, 20);
   scene.add(light);
-
   initializeModel(modelPath, scene, camera, canvasId);
 }
 
@@ -90,22 +83,19 @@ function adjustCamera(model, camera) {
   const center = boundingBox.getCenter(new THREE.Vector3());
   const size = boundingBox.getSize(new THREE.Vector3());
   const maxDim = Math.max(size.x, size.y, size.z);
-  const distance = maxDim * 1.2;
-  camera.position.set(center.x +0.2, center.y, center.z + + distance);
+  const distance = maxDim * 1;
+  camera.position.set(center.x, center.y, center.z + + distance);
   camera.lookAt(center);
 }
 
-function animate(model, renderer, camera, scene) {
+function animate(model, renderer, camera, scene, canvasId) {
   requestAnimationFrame(() => animate(model, renderer, camera, scene));
   if (model && amountofModels == 12) {
     model.rotation.y += 0.008;
   }
-  if(amountofModels == 12) {
-    console.log('experimental finished loading done!');
-  }
   renderer.render(scene, camera);
   if (window.fpsTrackerActive) {
-    const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
+    const fpsEvent = new CustomEvent('logFPS', { detail: `${canvasId} - Current FPS: ${getFPS()}` });
     window.dispatchEvent(fpsEvent);
   }
 }
