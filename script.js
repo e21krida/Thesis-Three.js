@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const models = {};
 const renderers = {};
-let amountofModels = 0;
+let loadedModels = 0;
 const canvasContainer = document.querySelector('.canvas-container');
 
 window.onload = function () {
@@ -60,13 +60,17 @@ function initializeThree(canvasId, modelPath) {
 function initializeModel(modelPath, scene, camera, canvasId) {
   const loader = new GLTFLoader();
   loader.load(modelPath, function (gltf) {
-    amountofModels++;
+    loadedModels++;
     const model = gltf.scene;
     scaleModel(model);
     adjustCamera(model, camera);
     scene.add(model);
     models[canvasId] = model;
     animate(model, renderers[canvasId], camera, scene);
+
+    if(loadedModels == 12) {
+      window.dispatchEvent(new CustomEvent('allModelsLoaded'));
+    }
   });
 }
 
@@ -90,7 +94,7 @@ function adjustCamera(model, camera) {
 
 function animate(model, renderer, camera, scene, canvasId) {
   requestAnimationFrame(() => animate(model, renderer, camera, scene));
-  if (model && amountofModels == 12) {
+  if (loadedModels == 12) {
     model.rotation.y += 0.008;
   }
   renderer.render(scene, camera);
