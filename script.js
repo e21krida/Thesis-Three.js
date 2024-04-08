@@ -51,7 +51,7 @@ function initializeThree(canvasId, modelPath) {
   const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   renderers[canvasId] = renderer;
-  const light = new THREE.PointLight( 0xffffff, 500, 100);
+  const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
   light.position.set(0, 10, 20);
   scene.add(light);
   initializeModel(modelPath, scene, camera, canvasId);

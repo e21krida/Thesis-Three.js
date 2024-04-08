@@ -89,7 +89,7 @@ function initializeThree() {
   renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-  const light = new THREE.PointLight( 0xffffff, 1, 100 );
+  const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
   light.position.set(0, 0.5, 1);
   scene.add(light);
 }

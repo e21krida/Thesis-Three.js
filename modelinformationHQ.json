@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Doodles",
-    "path": "models/doodles.glb",
+    "path": "modelsHQ/doodles.glb",
     "references": [
       {
         "text": "Doodles",
@@ -17,7 +17,7 @@
   {
     "id": 2,
     "name": "Pinky Fashion",
-    "path": "models/pinky-fashion.glb",
+    "path": "modelsHQ/pinky-fashion.glb",
     "references": [
       {
         "text": "Pinky Fashion",
@@ -32,7 +32,7 @@
   {
     "id": 3,
     "name": "Nostalgia",
-    "path": "models/nostalgia.glb",
+    "path": "modelsHQ/nostalgia.glb",
     "references": [
       {
         "text": "Nostalgia",
@@ -47,7 +47,7 @@
   {
     "id": 4,
     "name": "Bowser",
-    "path": "models/bowser.glb",
+    "path": "modelsHQ/bowser.glb",
     "references": [
       {
         "text": "Bowser",
@@ -62,7 +62,7 @@
   {
     "id": 5,
     "name": "Class-IC",
-    "path": "models/class-ic.glb",
+    "path": "modelsHQ/class-ic.glb",
     "references": [
       {
         "text": "Class-IC",
@@ -77,7 +77,7 @@
   {
     "id": 6,
     "name": "Batik",
-    "path": "models/batik.glb",
+    "path": "modelsHQ/batik.glb",
     "references": [
       {
         "text": "Batik",
@@ -92,7 +92,7 @@
   {
     "id": 7,
     "name": "Aliens",
-    "path": "models/aliens.glb",
+    "path": "modelsHQ/aliens.glb",
     "references": [
       {
         "text": "Aliens",
@@ -107,7 +107,7 @@
   {
     "id": 8,
     "name": "Cardboard",
-    "path": "models/cardboard.glb",
+    "path": "modelsHQ/cardboard.glb",
     "references": [
       {
         "text": "Cardboard",
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "name": "Flower",
-    "path": "models/flower.glb",
+    "path": "modelsHQ/flower.glb",
     "references": [
       {
         "text": "Flower",
@@ -137,7 +137,7 @@
   {
     "id": 10,
     "name": "Belz",
-    "path": "models/belzs.glb",
+    "path": "modelsHQ/belzs.glb",
     "references": [
       {
         "text": "Belz",
@@ -152,7 +152,7 @@
   {
     "id": 11,
     "name": "Golden",
-    "path": "models/golden.glb",
+    "path": "modelsHQ/golden.glb",
     "references": [
       {
         "text": "Golden",
@@ -167,7 +167,7 @@
   {
     "id": 12,
     "name": "Paul Theme",
-    "path": "models/paul-theme.glb",
+    "path": "modelsHQ/paul-theme.glb",
     "references": [
       {
         "text": "paul-theme",
