@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 let scene, camera, renderer, model;
+let dispatchPossibleFlag = true;
 
 const canvasContainer = document.querySelector('.product-canvas-container');
 
@@ -112,7 +113,7 @@ function scaleModel(model) {
   const size = boundingBox.getSize(new THREE.Vector3());
 
   // Value is derived from the height of the most "optimal" model, most models have a height low enough to not be affected by this, but some were way too big.
-  const targetHeight = 1; 
+  const targetHeight = 1;
   const scaleFactor = targetHeight / size.y;
   model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 }
@@ -134,8 +135,12 @@ function animate() {
     model.rotation.y += 0.005;
   }
   renderer.render(scene, camera);
-  if (window.fpsTrackerActive) {
-    const fpsEvent = new CustomEvent('logFPS', { detail: `Canvas ${canvasNumber} - Current FPS: ${getFPS()}` });
+  if (window.fpsTrackerActive && model && dispatchPossibleFlag) {
+    const fpsEvent = new CustomEvent('logFPS', { detail: { name: "Canvas", value: getFPS() } });
     window.dispatchEvent(fpsEvent);
+    dispatchPossibleFlag = false;
+    setTimeout(() => {
+      dispatchPossibleFlag = true;
+    }, 1000);
   }
 }

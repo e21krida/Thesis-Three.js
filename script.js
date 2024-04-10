@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const models = {};
 const renderers = {};
+const dispatchPossibleFlags = {};
 let loadedModels = 0;
 const canvasContainer = document.querySelector('.canvas-container');
 
@@ -54,6 +55,7 @@ function initializeThree(canvasId, modelPath) {
   const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
   light.position.set(0, 10, 20);
   scene.add(light);
+  dispatchPossibleFlags[canvasId] = true;
   initializeModel(modelPath, scene, camera, canvasId);
 }
 
@@ -66,7 +68,7 @@ function initializeModel(modelPath, scene, camera, canvasId) {
     adjustCamera(model, camera);
     scene.add(model);
     models[canvasId] = model;
-    animate(model, renderers[canvasId], camera, scene);
+    animate(model, renderers[canvasId], camera, scene, canvasId);
 
     if(loadedModels == 12) {
       window.dispatchEvent(new CustomEvent('allModelsLoaded'));
@@ -93,13 +95,17 @@ function adjustCamera(model, camera) {
 }
 
 function animate(model, renderer, camera, scene, canvasId) {
-  requestAnimationFrame(() => animate(model, renderer, camera, scene));
+  requestAnimationFrame(() => animate(model, renderer, camera, scene, canvasId));
   if (loadedModels == 12) {
     model.rotation.y += 0.008;
   }
   renderer.render(scene, camera);
-  if (window.fpsTrackerActive) {
-    const fpsEvent = new CustomEvent('logFPS', { detail: `${canvasId} - Current FPS: ${getFPS()}` });
+  if (window.fpsTrackerActive && loadedModels == 12 && dispatchPossibleFlags[canvasId]) {
+    const fpsEvent = new CustomEvent('logFPS', { detail: { name: canvasId, value: getFPS()} });
     window.dispatchEvent(fpsEvent);
+    dispatchPossibleFlags[canvasId] = false;
+    setTimeout(() => {
+      dispatchPossibleFlags[canvasId] = true;
+    }, 1000);
   }
 }
