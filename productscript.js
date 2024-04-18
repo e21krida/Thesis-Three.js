@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 let scene, camera, renderer, model;
 let dispatchPossibleFlag = true;
+let loadedModels = 0;
 
 const canvasContainer = document.querySelector('.product-canvas-container');
 
@@ -63,13 +64,11 @@ function generateCanvas(modelName) {
       sourceC.href = 'https://creativecommons.org/licenses/by/4.0/';
       referenceText.appendChild(sourceC);
 
-      initializeThree();
-      initializeModel(rightModel.path);
-      animate();
+      initializeThree(rightModel.path);
     });
 }
 
-function initializeThree() {
+function initializeThree(modelPath) {
   const canvas = document.getElementById("canvas1");
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xCCCCCC);
@@ -80,17 +79,23 @@ function initializeThree() {
   const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
   light.position.set(0, 0.5, 1);
   scene.add(light);
+  initializeModel(modelPath, scene, camera);
 }
 
-function initializeModel(modelPath) {
+function initializeModel(modelPath, scene, camera) {
   const loader = new GLTFLoader();
   loader.load(modelPath, function (gltf) {
+    loadedModels++;
     model = gltf.scene;
     scaleModel(model);
-    scaleCamera(model, camera);
+    adjustCamera(model, camera);
     scene.add(model);
-    renderer.render(scene, camera);
+    animate();
   });
+
+  if(loadedModels == 1) {
+    window.dispatchEvent(new CustomEvent('allModelsLoaded'));
+  }
 }
 
 function scaleModel(model) {
@@ -101,7 +106,7 @@ function scaleModel(model) {
   model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 }
 
-function scaleCamera(model, camera) {
+function adjustCamera(model, camera) {
   const boundingBox = new THREE.Box3().setFromObject(model);
   const center = boundingBox.getCenter(new THREE.Vector3());
   const size = boundingBox.getSize(new THREE.Vector3());
