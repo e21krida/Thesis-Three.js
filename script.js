@@ -39,7 +39,6 @@ function createCanvases(model, index) {
   canvas.addEventListener('click', function () {
     window.location.href = `product.html?name=${model.name}`;
   });
-
   initializeThree(canvasId, model.path);
 }
 
@@ -70,7 +69,7 @@ function initializeModel(modelPath, scene, camera, canvasId) {
     models[canvasId] = model;
     animate(model, renderers[canvasId], camera, scene, canvasId);
 
-    if(loadedModels == 12) {
+    if (loadedModels == 12) {
       window.dispatchEvent(new CustomEvent('allModelsLoaded'));
     }
   });
@@ -101,7 +100,7 @@ function animate(model, renderer, camera, scene, canvasId) {
   }
   renderer.render(scene, camera);
   if (window.fpsTrackerActive && loadedModels == 12 && dispatchPossibleFlags[canvasId]) {
-    const fpsEvent = new CustomEvent('logFPS', { detail: { name: canvasId, value: getFPS()} });
+    const fpsEvent = new CustomEvent('logFPS', { detail: { name: canvasId, value: getFPS() } });
     window.dispatchEvent(fpsEvent);
     dispatchPossibleFlags[canvasId] = false;
     setTimeout(() => {
