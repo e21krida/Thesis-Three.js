@@ -93,7 +93,7 @@ function initializeModel(modelPath, scene, camera) {
     animate();
   });
 
-  if(loadedModels == 1) {
+  if (loadedModels == 1) {
     window.dispatchEvent(new CustomEvent('allModelsLoaded'));
   }
 }
@@ -123,7 +123,7 @@ function animate() {
   }
   renderer.render(scene, camera);
   if (window.fpsTrackerActive && model && dispatchPossibleFlag) {
-    const fpsEvent = new CustomEvent('logFPS', { detail: { name: "Canvas", value: getFPS() } });
+    const fpsEvent = new CustomEvent('logFPS', { detail: { value: getFPS() } });
     window.dispatchEvent(fpsEvent);
     dispatchPossibleFlag = false;
     setTimeout(() => {
