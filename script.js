@@ -48,7 +48,7 @@ function initializeThree(canvasId, modelPath) {
   scene.background = new THREE.Color(0xCCCCCC);
   const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
   camera.position.set(0, 0, 35);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
   renderers[canvasId] = renderer;
   const light = new THREE.HemisphereLight(0xffffff, 0xffffff, 1);
