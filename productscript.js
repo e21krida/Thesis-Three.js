@@ -91,11 +91,8 @@ function initializeModel(modelPath, scene, camera) {
     adjustCamera(model, camera);
     scene.add(model);
     animate();
-  });
-
-  if (loadedModels == 1) {
     window.dispatchEvent(new CustomEvent('allModelsLoaded'));
-  }
+  });
 }
 
 function scaleModel(model) {
